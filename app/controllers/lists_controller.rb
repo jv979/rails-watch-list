@@ -11,10 +11,14 @@ class ListsController < ApplicationController
     @list = List.new(list_params)
 
     if @list.save
-      redirect_to lists_path
+      redirect_to list_path(@list)
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def show
+    @list = List.find(params[:id])
   end
 
   private
